@@ -277,7 +277,7 @@ function giaodichbatthuong(coin, v, interval, num) {
     var template = $("#template_noti").clone();
     $(".noti_badge", template).addClass("badge-warning").text(coin);
     $(".noti_title", template).text("Giao dịch bất thường");
-    $(".noti_description", template).html(coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây");
+    $(".noti_description", template).html(coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây. Để xem <a href='" + coin + ".html'>Click here</a>");
     $(".Last-responded", template).text(time);
     $(".ticket-card" + tid, template).addClass("ticket" + tid);
     var html = $(template).html();
@@ -287,7 +287,7 @@ function giaodichbatthuong(coin, v, interval, num) {
             var len = results.rows.length, i;
             if (len == 0) {
                 var title = "Giao dịch bất thường";
-                var body = coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây. Để xem <a href='" + coin + ".html'>Click here<a/>";
+                var body = coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây.";
                 var tag = coin;
                 tx.executeSql('INSERT INTO LOGS (id , title, body, tag, is_noti) VALUES (' + tid + ', "' + title + '", "' + body + '", "' + tag + '",0)');
             }
