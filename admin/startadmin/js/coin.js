@@ -277,7 +277,7 @@ function giaodichbatthuong(coin, v, interval, num) {
     var template = $("#template_noti").clone();
     $(".noti_badge", template).addClass("badge-warning").text(coin);
     $(".noti_title", template).text("Giao dịch bất thường");
-    $(".noti_description", template).html(coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây. Để xem <a href='" + alias[coin] + ".html'>Click here</a>");
+    $(".noti_description", template).html(coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây. Để xem <a href='" + alias[coin].toLowerCase() + ".html'>Click here</a>");
     $(".Last-responded", template).text(time);
     $(".ticket-card" + tid, template).addClass("ticket" + tid);
     var html = $(template).html();
