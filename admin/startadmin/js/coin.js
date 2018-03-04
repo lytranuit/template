@@ -287,7 +287,7 @@ function giaodichbatthuong(coin, v, interval, num) {
             var len = results.rows.length, i;
             if (len == 0) {
                 var title = "Giao dịch bất thường";
-                var body = coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây";
+                var body = coin + " đang có " + num + " giao dịch bất thường trong vòng " + interval + " phút gần đây. Để xem <a href='" + coin + ".html'>Click here<a/>";
                 var tag = coin;
                 tx.executeSql('INSERT INTO LOGS (id , title, body, tag, is_noti) VALUES (' + tid + ', "' + title + '", "' + body + '", "' + tag + '",0)');
             }
