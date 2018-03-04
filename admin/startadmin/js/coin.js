@@ -30,7 +30,7 @@ var avg_price = [];
 var notification = {};
 var db = openDatabase('mydb', '1.0', 'Coin', 2 * 1024 * 1024);
 var msg;
-
+var colorHash = new ColorHash({lightness: 0.5});
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, title, body, tag, is_noti)');
 });
@@ -121,7 +121,7 @@ function getTrade(coin) {
                 var contentB = parseInt($(b).attr('data'));
                 return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
             }).appendTo("#tickets");
-            
+
             /*
              * Notification
              */
@@ -195,15 +195,18 @@ function tin_hieu_mua(coin, num, v) {
     var tid = v['tid'];
     var time = moment.unix(timestamp).fromNow();
     var ticket = $('.ticket-card[data=' + tid + ']');
+    var color = colorHash.hex(coin);
     if (ticket.length) {
-        $(".noti_badge", ticket).addClass("badge-success").text(coin);
+        $(".noti_badge", ticket).addClass("badge-success").text("Buy");
+        $(".noti_tag", ticket).addClass("badge-success").text(coin).css("background", color);
         $(".noti_title", ticket).text("Tín hiệu nhiều hơn " + num + " giao dịch mua liên tiếp ( > " + num + " )");
         $(".noti_description", ticket).html(coin + " đang có nhiều giao dịch mua liên tiếp ->>> <a href='https://wex.nz/exchange/" + coin + "' target='_blank'>Vào mua</a>");
         $(".Last-responded", ticket).text(time);
     } else {
         notification[tid] = false;
         var template = $("#template_noti").clone();
-        $(".noti_badge", template).addClass("badge-success").text(coin);
+        $(".noti_badge", template).addClass("badge-success").text("Buy");
+        $(".noti_tag", template).addClass("badge-success").text(coin).css("background", color);
         $(".noti_title", template).text("Tín hiệu nhiều hơn " + num + " giao dịch mua liên tiếp ( > " + num + " )");
         $(".noti_description", template).html(coin + " đang có nhiều giao dịch mua liên tiếp ->>> <a href='https://wex.nz/exchange/" + coin + "' target='_blank'>Vào mua</a>");
         $(".Last-responded", template).text(time);
@@ -229,14 +232,17 @@ function tin_hieu_ban(coin, num, v) {
     var tid = v['tid'];
     var time = moment.unix(timestamp).fromNow();
     var ticket = $('.ticket-card[data=' + tid + ']');
+    var color = colorHash.hex(coin);
     if (ticket.length) {
-        $(".noti_badge", ticket).addClass("badge-danger").text(coin);
+        $(".noti_badge", ticket).addClass("badge-danger").text("Bán");
+        $(".noti_tag", ticket).addClass("badge-success").text(coin).css("background", color);
         $(".noti_title", ticket).text("Tín hiệu bán nhiều hơn " + num + " giao dịch bán liên tiếp ( > " + num + " )");
         $(".noti_description", ticket).html(coin + " đang có nhiều giao dịch bán liên tiếp ->>> <a href='https://wex.nz/exchange/" + coin + "' target='_blank'>Vào bán</a>");
         $(".Last-responded", ticket).text(time);
     } else {
         var template = $("#template_noti").clone();
-        $(".noti_badge", template).addClass("badge-danger").text(coin);
+        $(".noti_badge", template).addClass("badge-danger").text("Bán");
+        $(".noti_tag", template).addClass("badge-success").text(coin).css("background", color);
         $(".noti_title", template).text("Tín hiệu bán nhiều hơn " + num + " giao dịch bán liên tiếp ( > " + num + " )");
         $(".noti_description", template).html(coin + " đang có nhiều giao dịch bán liên tiếp ->>> <a href='https://wex.nz/exchange/" + coin + "' target='_blank'>Vào bán</a>");
         $(".Last-responded", template).text(time);
