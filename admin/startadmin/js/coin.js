@@ -54,8 +54,8 @@ function getTrade(coin) {
             var mua = 0;
             var ban = 0;
             var batthuong = 0;
-            var tong_mua = 0;
-            var tong_ban = 0;
+            var tong_coin_mua = 0;
+            var tong_coin_ban = 0;
 
             var noti_mua_1 = false;
             var noti_mua_2 = false;
@@ -84,14 +84,14 @@ function getTrade(coin) {
                 if (type == "bid") {
                     mua++;
                     ban = 0;
-
+                    tong_coin_mua += amount;
                     noti_ban_1 = false;
                     noti_ban_2 = false;
 
                 } else {
                     ban++;
                     mua = 0;
-
+                    tong_coin_ban += amount;
                     noti_mua_1 = false;
                     noti_mua_2 = false;
                 }
@@ -121,7 +121,13 @@ function getTrade(coin) {
                 var contentB = parseInt($(b).attr('data'));
                 return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
             }).appendTo("#tickets");
-
+            var chech_lech = tong_coin_mua - tong_coin_ban;
+            var color_chech_lech = chech_lech > 0 ? "text-success" : "text-danger";
+            var append = "<b>" + alias[coin] + "</b>: " + tong_coin_mua + " | " + tong_coin_ban + "(<b class='" + color_chech_lech + "'>" + chech_lech + "</b>)";
+            if (!$("#volumn .volumn-coin[data='" + coin + "']").length) {
+                $("#volumn").append("<div class='volumn-coin mt-2' data='" + coin + "' />");
+            }
+            $("#volumn .volumn-coin[data='" + coin + "']").html(append);
             /*
              * Notification
              */
