@@ -309,9 +309,11 @@ function thenotification(title, body, tag, icon) {
         var options = {
             body: body,
             tag: tag,
-            icon: icon
+            icon: icon,
+            sound: 'alert.mp3'
         }
         notification = new Notification(title, options);
+        $("body").append("<audio autoplay><source src='alert.mp3' type='audio/mp3'></audio>");
         //                                    setTimeout(notification.close.bind(notification), 4000);
     } else if (Notification && Notification.permission !== "denied") {
         // Request permission
@@ -327,9 +329,11 @@ function thenotification(title, body, tag, icon) {
                 var options = {
                     body: body,
                     tag: tag,
-                    icon: icon
+                    icon: icon,
+                    sound: 'alert.mp3'
                 }
                 notification = new Notification(title, options);
+                $("body").append("<audio autoplay><source src='alert.mp3' type='audio/mp3'></audio>");
                 //                                            setTimeout(notification.close.bind(notification), 4000);
             } else {
                 console.log("This browser does not support system notifications");
