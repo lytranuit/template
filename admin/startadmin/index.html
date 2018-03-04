@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Trade Coin Tool</title>
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="../../node_modules/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../../node_modules/simple-line-icons/css/simple-line-icons.css">
+        <!-- endinject -->
+        <!-- plugin css for this page -->
+        <!-- End plugin css for this page -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="../../css/style.css">
+        <!-- endinject -->
+        <link rel="shortcut icon" href="images/favicon.png" />
+
+    </head>
+
+    <body>
+        <div class="container-scroller">
+            <!-- partial:../../partials/_navbar.html -->
+            <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+                    <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.svg" alt="logo"/></a>
+                    <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center" id="coin">
+                    <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link" id="btc-price" data='btc_usd' data-text='BTC'></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="ltc-price" data='ltc_usd' data-text='LTC'></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="zec-price" data='zec_usd' data-text='ZEC'></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial:../../partials/_sidebar.html -->
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item nav-profile">
+                            <div class="nav-link">
+                                <div class="profile-image"> <img src="../../images/faces/facetran.jpg" alt="image"/> <span class="online-status online"></span> </div>
+                                <div class="profile-name">
+                                    <p class="name">Admin</p>
+                                    <p class="designation">Manager</p>
+                                    <div class="badge badge-teal mx-auto mt-3">Online</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html"><img class="menu-icon" src="images/menu_icons/01.png" alt="menu icon"><span class="menu-title">Dashboard</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="btc.html"><img class="menu-icon" src="images/menu_icons/06.png" alt="menu icon"><span class="menu-title">BTC</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="ltc.html"><img class="menu-icon" src="images/menu_icons/06.png" alt="menu icon"><span class="menu-title">LTC</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="zec.html"><img class="menu-icon" src="images/menu_icons/06.png" alt="menu icon"><span class="menu-title">ZEC</span></a></li>
+                    </ul>
+                </nav>
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+
+                        <div class="row">
+                            <div class="col-12 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-4">Manage Tickets</h5>
+                                        <div class="fluid-container" id="tickets">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content-wrapper ends -->
+                    <!-- partial:../../partials/_footer.html -->
+
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <div id='template' class='d-none'>
+            <div id='template_noti'>
+                <div class="row ticket-card mt-3 pb-2 border-bottom">
+                    <div class="col-1">
+                        <img class="img-sm rounded-circle" src="../../images/faces/facetran.jpg" alt="profile image">
+                    </div>
+                    <div class="ticket-details col-9">
+                        <div class="d-flex">
+                            <p class="text-primary font-weight-bold mr-2 mb-0 no-wrap">Admin :</p>
+                            <p class="font-weight-medium mr-1 mb-0"><label class='noti_badge'>BTC</label></p>
+                            <p class="font-weight-bold mb-0 ellipsis noti_title">Tín hiệu bán</p>
+                        </div>
+                        <p class="text-small text-gray noti_description">BTC đang có giao dịch bán</p>
+                        <div class="row text-muted d-flex">
+                            <div class="col-12 d-flex">
+                                <p class="mb-0 mr-2">Thời gian :</p>
+                                <p class="Last-responded mr-2 mb-0">3 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- endinject -->
+        <!-- Plugin js for this page-->
+        <!-- End plugin js for this page-->
+        <!-- inject:js -->
+        <script src="../../js/off-canvas.js"></script>
+        <script src="../../js/misc.js"></script>
+        <script src="../../js/coin.js"></script>
+        <script src="../../js/moment.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.each(config, function (coin, v) {
+                    getTrade(coin);
+                })
+                var timer = setInterval(function () {
+                    $.each(config, function (coin, v) {
+                        getTrade(coin);
+                    })
+                }, 60000)
+            });
+        </script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <!-- End custom js for this page-->
+    </body>
+
+</html>
